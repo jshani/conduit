@@ -18,7 +18,9 @@ npm install
 
 - To run tests in Cypress test runner - desktop.
 
-  1. ### `npm run e2e-desktop`
+  1. ```
+     npm run e2e-desktop
+     ```
 
   2. Select 'E2E Testing' from the pop-up
   3. Select the desired browser (chrome/electron/firefox)
@@ -26,25 +28,37 @@ npm install
 
 - To run tests in Cypress test runner - mobile.
 
-  1. ### `npm run e2e-mobile`
+  1. ```
+     npm run e2e-mobile
+     ```
+
+  ```
 
   2. Select 'E2E Testing' from the pop-up
   3. Select the desired browser (chrome/electron/firefox)
   4. Select the test suite (i.e. login.cy.js/settings.cy.js)
 
+  ```
+
 - To run the test in CLI.
 
-  ### `npm run e2e`
+  ```
+  npm run e2e
+  ```
 
 - For cross-browser testing. (Default browser is Chrome)
 
   - To run tests in Firefox
 
-  ### `npm run e2e-firefox`
+  ```
+  npm run e2e-firefox
+  ```
 
   - To run tests in Edge
 
-  ### `npm run e2e-edge`
+  ```
+  npm run e2e-edge
+  ```
 
 ## Project Structure
 
