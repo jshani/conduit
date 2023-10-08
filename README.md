@@ -32,13 +32,9 @@ npm install
      npm run e2e-mobile
      ```
 
-  ```
-
   2. Select 'E2E Testing' from the pop-up
   3. Select the desired browser (chrome/electron/firefox)
   4. Select the test suite (i.e. login.cy.js/settings.cy.js)
-
-  ```
 
 - To run the test in CLI.
 
