@@ -10,7 +10,9 @@ conduit is the UI test suite for conduit web application, implemented using cypr
 
 - Run from the root directory.
 
-  #### `npm start`
+```
+npm install
+```
 
 ## How to run the tests?
 
