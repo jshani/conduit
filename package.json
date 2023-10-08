@@ -1,0 +1,22 @@
+{
+  "name": "conduit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "e2e": "npx cypress run --config-file cypress.desktop.config.js --spec ./cypress/e2e/*.cy.js",
+    "e2e-desktop": "npx cypress open --config-file cypress.desktop.config.js",
+    "e2e-mobile": "npx cypress open --config-file cypress.mobile.config.js",
+    "e2e-firefox": "npx cypress run --config-file cypress.desktop.config.js --browser electron",
+    "e2e-edge": "npx cypress run --config-file cypress.desktop.config.js --browser edge"
+  },
+  "repository": {
+    "type": "git",
+    "url": "jshanim"
+  },
+  "author": "jayashani",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.0.0"
+  }
+}
