@@ -1,10 +1,10 @@
 class LoginPage {
   getEmailInputField() {
-    return cy.get('input[type="email"]');
+    return cy.get("input[type=email]");
   }
 
   getPasswordInputField() {
-    return cy.get('input[type="password"]');
+    return cy.get("input[type=password]");
   }
 
   getSignInButton() {
