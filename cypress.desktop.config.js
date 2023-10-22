@@ -9,6 +9,7 @@ module.exports = defineConfig({
       emailId: "shanimandila@gmail.com",
       password: "Test123#",
       newPassword: "Test123@",
+      authToken: null,
     },
 
     requestTimeout: 6000,

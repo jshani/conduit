@@ -5,6 +5,10 @@ import SettingsPage from "./pageObjects/SettingsPage";
 const homePage = new HomePage();
 const loginPage = new LoginPage();
 const settingsPage = new SettingsPage();
+let randomPart;
+let newEmailId;
+let newUsername;
+let newToken;
 
 Cypress.Commands.add("waitForApiResponse", (request) => {
   cy.intercept("POST", "**/api.realworld.io/api/users/login").as("login");
@@ -46,4 +50,61 @@ Cypress.Commands.add("logout", () => {
   homePage.getSettings().click({ force: true });
   settingsPage.getLogoutButton({ timeout: 7000 }).click();
   homePage.getSignInButton().should("be.visible");
+});
+
+Cypress.Commands.add("apiLogin", () => {
+  randomPart = Math.random().toString(36).substring(2, 15);
+  newEmailId = randomPart + "@gmail.com";
+  newUsername = "shani" + randomPart;
+  cy.request({
+    method: "POST",
+    url: "https://api.realworld.io/api/users",
+    body: {
+      user: {
+        email: newEmailId,
+        password: "Test123#",
+        username: newUsername,
+      },
+    },
+  }).should((response) => {
+    expect(response.status).to.eq(201);
+    expect(response.body.user).to.have.property("username").to.eq(newUsername);
+    expect(response.body.user).to.have.property("email").to.eq(newEmailId);
+  });
+  cy.request({
+    method: "POST",
+    url: "https://api.realworld.io/api/users/login",
+    body: {
+      user: { email: newEmailId, password: newPassword },
+    },
+  }).then(({ body }) => {
+    expect(body.user.token).to.be.a("string");
+    //do we need bottom line
+    cy.setCookie("token", body.user.token);
+    window.localStorage.setItem("authToken", body.user.token);
+
+    const authorizationToken = `Token ${body.user.token}`;
+    cy.visit("https://angularjs.realworld.io/#/");
+
+    cy.request({
+      method: "GET",
+      url: "https://api.realworld.io/api/user",
+      headers: {
+        authorization: authorizationToken,
+      },
+      body: {
+        user: {
+          bio: null,
+          email: newEmailId,
+          image: "https://api.realworld.io/images/smiley-cyrus.jpeg",
+          token: newToken,
+          username: newUsername,
+        },
+      },
+    }).then(({ body }) => {
+      expect(body.user.token).to.be.a("string");
+      //cy.setCookie("token", response.body.user.token);
+      cy.visit("https://angularjs.realworld.io/#/settings");
+    });
+  });
 });
